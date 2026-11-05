@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: gnj-kakao-ai-agent
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: OPENAI_MODEL
+        sync: false
+      - key: ADMIN_PAIR_CODE
+        sync: false
+      - key: DB_PATH
+        value: /var/data/gnj_kakao.db
+    disk:
+      name: gnj-ai-data
+      mountPath: /var/data
+      sizeGB: 1
