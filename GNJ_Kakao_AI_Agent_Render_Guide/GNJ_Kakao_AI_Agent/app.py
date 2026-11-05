@@ -133,7 +133,7 @@ async def kakao_skill(request: Request):
     # The public channel is not automatically an admin-only private chat.
     # Only the account that successfully pairs is allowed to use the private AI assistant.
     if not is_admin(uid):
-        if ADMIN_PAIR_CODE and utterance.strip() == f"관리자등록 {01064296269}":
+        if ADMIN_PAIR_CODE and utterance.strip() == f"관리자등록 {GNJ-Admin-2026-01064296269}":
             with db() as c:
                 c.execute("INSERT OR IGNORE INTO admins(kakao_user_id,created_at) VALUES(?,?)",
                           (uid, datetime.now().isoformat(timespec="seconds")))
